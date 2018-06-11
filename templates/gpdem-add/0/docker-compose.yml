@@ -1,0 +1,18 @@
+version: '2'
+services:
+  gpnode3:
+     image: 10.0.0.96:5000/database/centos_greenplum:v2 
+     hostname: sdw3
+     labels:
+      io.rancher.scheduler.global: 'true'
+      io.rancher.scheduler.affinity:host_label: key1=100
+     networks: 
+       - docker_gwbridge
+     ports:
+       - "20009:40000"
+       - "20030:40001"
+     volumes:
+       - /opt/gpnode3/gpdata:/home/gpadmin/gpdata
+     privileged: true
+     tty: true
+
